@@ -42,7 +42,8 @@ router.get("/getSubscriptions/:broadcasterId/:userId", async (req, res) => {
       'Authorization': `Bearer ${process.env.twitchAccessToken}`
     }
   }).then((res) => {
-    console.log(res.data)
+    if (res.data.data.length === 0) return { 'subscribed': false }
+    return { 'subscribed': true }
   })
 });
 
